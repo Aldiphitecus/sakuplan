@@ -1,0 +1,87 @@
+body {
+    background-color: rgb(227, 225, 225);
+}
+
+body::-webkit-scrollbar {
+    display: none;
+}
+
+.header {
+    padding-bottom: 220px;
+    background-color: #493D9E;
+}
+
+.info {
+    padding-top: 76px;
+}
+
+.title-info {
+    padding-bottom: 4px;
+    border-bottom: 2px solid #493D9E;
+}
+
+.progress-title {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 4px;
+    border-bottom: 2px solid #493D9E;
+}
+
+.progress-bar {
+    background-color: #493D9E;
+}
+
+.btn-more {
+    border: 2px solid #493D9E;
+    color: #493D9E;
+}
+
+.btn-more:hover {
+    background-color: #493D9E;
+    color: white;
+}
+
+.btn-action {
+    height: 95px;
+    width: 95px;
+    border: 2px solid #493D9E;
+    background-color: white;
+    color: #493D9E;
+}
+
+.btn-clr-goal {
+    height: 95px;
+    width: 95px;
+    border: 2px solid #dc3545;
+    background-color: white;
+    color: #dc3545;
+}
+
+.btn-clr-goal:hover {
+    height: 95px;
+    width: 95px;
+    border: 2px solid white;
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-action:hover {
+    height: 95px;
+    width: 95px;
+    background-color: #493D9E;
+    color: white;
+}
+
+.popup-setgoal-header {
+    background-color: #493D9E;
+}
+
+.btn-save-goal {
+    background-color: #493D9E;
+    color: white;
+}
+
+.btn-save-goal:hover {
+    background-color: #322978;
+    color: white;
+}

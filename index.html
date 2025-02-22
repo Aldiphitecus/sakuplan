@@ -1,0 +1,241 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SakuPlan</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <!-- Warning Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" aria-labelledby="warningModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-warning text-dark">
+                    <h5 class="modal-title" id="warningModalLabel">Warning</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    All field cannot be empty!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal-->
+    <div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteConfirmationModalLabel">Delete Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete your goal?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button onclick="deleteGoal()" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete All Confirmation Modal-->
+    <div class="modal fade" id="deleteAllConfirmation" tabindex="-1" aria-labelledby="deleteAllConfirmationLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteAllConfirmationLabel">Delete All Confirmation</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Are you sure you want to delete all your data?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button onclick="clearAllProcess()" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Modal Set Goal -->
+    <div class="modal fade" id="setGoalModal" tabindex="-1" aria-labelledby="setGoalModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="popup-setgoal-header modal-header text-dark">
+                    <h5 class="modal-title text-light" id="setGoalModalLabel">Set Your Goal</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h5>Goal :</h5>
+                        <input id="setGoalText" class="form-control rounded-4" type="text"
+                            placeholder="Enter your goal...">
+                    </div>
+                    <div class="form-group mt-3">
+                        <h5>Price :</h5>
+                        <input id="setGoalPrice" class="form-control rounded-4" type="number"
+                            placeholder="Enter the price...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button onclick="btnModal()" type="button" class="btn-save-goal btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Save cash -->
+    <div class="modal fade" id="saveCashModal" tabindex="-1" aria-labelledby="saveCashModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="popup-setgoal-header modal-header text-dark">
+                    <h5 class="modal-title text-light" id="saveCashModalLabel">Save Cash</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <h5>Amount :</h5>
+                        <input id="cashAmount" class="form-control rounded-4" type="number"
+                            placeholder="Enter the amount...">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button onclick="saveCashProses()" type="button" class="btn-save-goal btn">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <header class="header d-flex justify-content-center pt-0 position-absolute w-100 z-n1 rounded-bottom-5">
+        <h1 class="fw-bolder text-light pt-1">SakuPlan</h1>
+    </header>
+    <div class="info px-4">
+        <div class="d-flex justify-content-center mb-4">
+            <h3 class="text-light"><i class="fa-solid fa-sack-dollar"></i> Rp. <span id="totalAmount"></span> /
+                Rp. <span id="goalPrice"></span></h3>
+        </div>
+        <div class="card shadow rounded-4">
+            <div class="card-header">
+                <h4 class="card-title fw-bolder">Info</h4>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card shadow">
+                            <div class="card-body text-center">
+                                <p class="title-info fw-bolder">Goal</p>
+                                <span id="goalText" class="fw-medium"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="card shadow">
+                            <div class="card-body text-center">
+                                <p class="title-info fw-bolder">
+                                    Remaining
+                                </p>
+                                <span class="fw-medium">Rp. </span>
+                                <span id="amount" class="fw-medium"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div id="progressBar" class="mt-3 mb-2">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            <div class="text-center">
+                <h4 class="fw-bolder">Actions</h4>
+            </div>
+            <div class="mt-2 mb-4">
+                <div class="card shadow rounded-4">
+                    <div class="card-header">
+                        <span class="text-secondary">Choose an Action</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="d-flex flex-wrap gap-2 justify-content-start">
+                            <button onclick="showSetGoalModal()"
+                                class="btn-action btn d-flex flex-column justify-content-center">
+                                <i class="fa-solid fa-bullseye"></i>
+                                <span class="btn-action-title">Set Goal</span>
+                            </button>
+                            <button onclick="saveCash()"
+                                class="btn-action btn d-flex flex-column justify-content-center">
+                                <i class="fa-solid fa-piggy-bank"></i>
+                                <span class="btn-action-title">Save</span>
+                            </button>
+                            <button disabled class="btn-action btn d-flex flex-column justify-content-center">
+                                <i class="fa-solid fa-hand"></i>
+                                <span class="btn-action-title">Cashout</span>
+                            </button>
+                            <button onclick="deleteConfirmation()"
+                                class="btn-clr-goal btn d-flex flex-column justify-content-center">
+                                <i class="fa-solid fa-trash"></i>
+                                <span class="btn-action-title">Clear Goal</span>
+                            </button>
+                            <button onclick="clearAllPopUp()"
+                                class="btn-clr-goal btn d-flex flex-column justify-content-center">
+                                <i class="fa-solid fa-trash"></i>
+                                <span class="btn-action-title">Clear All</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class="text-center">
+                <h4 class="fw-bolder">Money Flow</h4>
+            </div>
+            <div class="mt-2 mb-4">
+                <div class="card shadow rounded-4">
+                    <div class="card-header">
+                        <span class="text-secondary">Income & Expenses</span>
+                    </div>
+                    <div id="moneyFlowList" class="card-body">
+                        <!--This for appenchild in script.js-->
+                    </div>
+                    <!-- <div class="card-footer">
+                        <div class="d-flex justify-content-end">
+                            <button class="btn-more btn btn-sm rounded-3">See More</button>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.0/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>
