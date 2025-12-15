@@ -148,7 +148,6 @@ function btnModal() {
 function deleteConfirmation() {
     deleteModal.show()
 }
-
 function deleteGoal() {
     if (dataGoalText.length > 0) {
 
@@ -243,9 +242,9 @@ function clearAllProcess() {
     let cashFlow = localStorage.getItem("cashFlow");
 
     if (!goalText && !goalPrice && !cashFlow) {
-        alert("No data can be deleted!");
+        alert("Tidak ada data yang bisa dihapus!");
         clearAllModal.hide()
-        return
+        return;
     }
 
     localStorage.removeItem("goalDataText")
