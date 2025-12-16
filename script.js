@@ -158,7 +158,7 @@ function deleteGoal() {
         window.location.reload()
     } else {
         deleteModal.hide();
-        alert("No goal to delete");
+        alert("There is no goal to delete");
     }
 }
 
