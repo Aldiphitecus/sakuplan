@@ -128,7 +128,7 @@ function btnModal() {
     }
 
     if (dataGoalText.length > 0) {
-        alert("Goal sudah ada")
+        alert("Goal already set")
         return
     }
 
