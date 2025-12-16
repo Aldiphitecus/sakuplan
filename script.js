@@ -209,7 +209,7 @@ function saveCashProses() {
     let cashAmountValue = cashAmount.value.trim()
 
     if (cashAmountValue === "") {
-        alert("Please enter an amount")
+        alert("Please enter an amount!")
         return
     }
 
