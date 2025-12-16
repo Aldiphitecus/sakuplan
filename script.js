@@ -242,7 +242,7 @@ function clearAllProcess() {
     let cashFlow = localStorage.getItem("cashFlow");
 
     if (!goalText && !goalPrice && !cashFlow) {
-        alert("Tidak ada data yang bisa dihapus!");
+        alert("No data can be deleted!");
         clearAllModal.hide()
         return;
     }
